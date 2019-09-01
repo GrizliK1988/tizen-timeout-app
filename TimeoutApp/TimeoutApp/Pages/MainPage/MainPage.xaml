@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:local="clr-namespace:TimeoutApp.Pages.MainPage"
+             x:Class="TimeoutApp.Pages.MainPage.MainPage">
+  <c:CirclePage.Content>
+    <StackLayout
+      BackgroundColor="Black"
+      HorizontalOptions="Center"
+      Orientation="Vertical"
+      VerticalOptions="FillAndExpand"
+    >
+      <Label
+        Text="Let's get to work"
+        HorizontalTextAlignment="Center"
+      />
+      <Button
+        x:Name="button"
+        Text="{Binding ButtonText}"
+        Clicked="OnWorkClicked"
+      >
+        <Button.BindingContext>
+          <local:MainPageViewModel />
+        </Button.BindingContext>
+      </Button>
+    </StackLayout>
+  </c:CirclePage.Content>
+</c:CirclePage>
