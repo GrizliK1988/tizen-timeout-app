@@ -1,4 +1,4 @@
 .idea
-TimeoutApp/bin
-TimeoutApp/lib
-TimeoutApp/obj
+TimeoutApp/TimeoutApp/bin/
+TimeoutApp/TimeoutApp/lib/
+TimeoutApp/TimeoutApp/obj/
