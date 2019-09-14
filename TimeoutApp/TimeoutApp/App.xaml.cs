@@ -23,7 +23,7 @@ namespace TimeoutApp
         protected override void OnSleep()
         {
             var appState = DependencyService.Get<ApplicationState>();
-            appState.Timer.Stop();
+            appState.Timer?.Stop();
         }
 
         protected override void OnResume()

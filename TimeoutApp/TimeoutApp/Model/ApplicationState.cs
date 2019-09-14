@@ -23,7 +23,24 @@ namespace TimeoutApp.Model
             }
         }
 
-        public Timer Timer { get; set; }
+        private static Timer _timer;
+
+        public Timer Timer
+        {
+            get
+            {
+                if (_timer == null) {
+                    _timer = new Timer { Interval = 1000 };
+                    _timer.Start();
+                }
+
+                return _timer;
+            }
+            set
+            {
+                _timer = value;
+            }
+        }
 
         public TimeSpan GetBreakDuration()
         {

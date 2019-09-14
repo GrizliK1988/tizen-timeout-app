@@ -2,6 +2,7 @@
 <c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:TimeoutApp.Pages.WorkDurationPage"
               x:Class="TimeoutApp.Pages.WorkDurationPage.WorkDurationPage">
     <c:CirclePage.Content>
         <StackLayout
@@ -11,10 +12,13 @@
             VerticalOptions="FillAndExpand"
         >
             <Label
-                x:Name="StartedAtLabel"
                 HorizontalTextAlignment="Center"
-                Text="Some text"
-            />
+                Text="{Binding WorkedFormatted}"
+            >
+                <Label.BindingContext>
+                    <local:WorkDurationPageViewModel />
+                </Label.BindingContext>
+            </Label>
         </StackLayout>
     </c:CirclePage.Content>
 </c:CirclePage>
