@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:TimeoutApp.Pages.BreakTimerPage"
+              x:Class="TimeoutApp.Pages.BreakTimerPage.BreakTimerPage"
+              NavigationPage.HasNavigationBar="False">
+    <c:CirclePage.BindingContext>
+        <local:BreakTimerPageViewModel />
+    </c:CirclePage.BindingContext>
+    <c:CirclePage.Content>
+        <StackLayout
+            BackgroundColor="Black"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="Center"
+        >
+            <Label
+                HorizontalTextAlignment="Center"
+                Text="{Binding RestOfBreakFormatted}"
+            >
+            </Label>
+        </StackLayout>
+    </c:CirclePage.Content>
+    <c:CirclePage.CircleSurfaceItems>
+        <c:CircleProgressBarSurfaceItem
+            x:Name="CircleProgress"
+            IsVisible="True"
+            Value="{Binding RestOfBreakNormalized}"
+        >
+        </c:CircleProgressBarSurfaceItem>
+    </c:CirclePage.CircleSurfaceItems>
+</c:CirclePage>

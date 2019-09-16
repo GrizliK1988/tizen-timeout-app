@@ -19,6 +19,10 @@
                     <local:WorkDurationPageViewModel />
                 </Label.BindingContext>
             </Label>
+            <Button
+                Text="Take a Break"
+                Clicked="OnBreakClicked"
+            />
         </StackLayout>
     </c:CirclePage.Content>
 </c:CirclePage>

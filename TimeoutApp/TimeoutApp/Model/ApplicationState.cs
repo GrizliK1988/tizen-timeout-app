@@ -42,7 +42,27 @@ namespace TimeoutApp.Model
             }
         }
 
-        public TimeSpan GetBreakDuration()
+        private DateTime _breakStart;
+
+        private TimeSpan _breakDuration;
+
+        public void StartBreak()
+        {
+            _breakStart = DateTime.Now;
+            _breakDuration = GetBreakDuration();
+        }
+
+        public DateTime BreakStart
+        {
+            get => _breakStart;
+        }
+
+        public TimeSpan BreakDuration
+        {
+            get => _breakDuration;
+        }
+
+        private TimeSpan GetBreakDuration()
         {
             var worked = DateTime.Now - WorkStart;
 
@@ -64,7 +84,7 @@ namespace TimeoutApp.Model
                 breakDuration = 15;
             }
             
-            return TimeSpan.FromSeconds(breakDuration);
+            return TimeSpan.FromSeconds(breakDuration * 10);
         }
     }
 }
