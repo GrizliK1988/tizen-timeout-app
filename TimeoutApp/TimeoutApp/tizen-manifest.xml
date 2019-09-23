@@ -8,8 +8,12 @@
 					taskmanage="true"
 					nodisplay="false"
 					launch_mode="single">
-  <label>TimeoutApp</label>
-	<icon>TimeoutApp.png</icon>
+  		<label>TimeoutApp</label>
+		<icon>TimeoutApp.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
 	</ui-application>
+	<privileges>
+		<privilege>http://tizen.org/privilege/haptic</privilege>
+	</privileges>
+	<provides-appdefined-privileges />
 </manifest>

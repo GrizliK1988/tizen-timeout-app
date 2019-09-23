@@ -2,12 +2,17 @@ using System;
 using System.ComponentModel;
 using System.Timers;
 using TimeoutApp.Model;
+using TimeoutApp.Pages.BreakTimerPage;
+using Tizen.System;
 using Xamarin.Forms;
 
+[assembly: Dependency(typeof(BreakTimerPageViewModel))]
 namespace TimeoutApp.Pages.BreakTimerPage
 {
     public class BreakTimerPageViewModel : INotifyPropertyChanged
     {
+        public static bool FEEDBACK_PLAYING = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly ApplicationState _applicationState;
@@ -23,6 +28,7 @@ namespace TimeoutApp.Pages.BreakTimerPage
         ~BreakTimerPageViewModel()
         {
             _applicationState.Timer.Elapsed -= TimeElapsed;
+            _applicationState.Feedback.Stop();
         }
 
         private TimeSpan _restOfBreak;
@@ -31,7 +37,8 @@ namespace TimeoutApp.Pages.BreakTimerPage
         {
             get
             {
-                return $"{_restOfBreak.Minutes:00}:{_restOfBreak.Seconds:00}";
+                var sign = _restOfBreak.Seconds < 0 ? "-" : "";
+                return $"{sign}{Math.Abs(_restOfBreak.Minutes):00}:{Math.Abs(_restOfBreak.Seconds):00}";
             }
         }
 
@@ -39,7 +46,8 @@ namespace TimeoutApp.Pages.BreakTimerPage
         {
             get
             {
-                return ((float)_restOfBreak.Seconds)/((float)_applicationState.BreakDuration.Seconds);
+
+                return ((float)_restOfBreak.TotalSeconds)/((float)_applicationState.BreakDuration.TotalSeconds);
             }
         }
 
@@ -50,10 +58,14 @@ namespace TimeoutApp.Pages.BreakTimerPage
 
         private void TimeElapsed()
         {
-            if (_applicationState.BreakDuration >= DateTime.Now - _applicationState.BreakStart) {
-                _restOfBreak = _applicationState.BreakDuration - (DateTime.Now - _applicationState.BreakStart);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RestOfBreakFormatted"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RestOfBreakNormalized"));
+            var secondsLeft = _applicationState.BreakDuration.Seconds - (DateTime.Now - _applicationState.BreakStart).Seconds;
+
+            _restOfBreak = _applicationState.BreakDuration - (DateTime.Now - _applicationState.BreakStart);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RestOfBreakFormatted"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RestOfBreakNormalized"));
+
+            if (secondsLeft == 0) {
+                _applicationState.Feedback.Play(FeedbackType.Vibration, "Timer");
             }
         }
     }

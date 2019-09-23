@@ -18,8 +18,11 @@
             <Label
                 HorizontalTextAlignment="Center"
                 Text="{Binding RestOfBreakFormatted}"
-            >
-            </Label>
+            />
+            <Button
+                Text="Back to work"
+                Clicked="OnBreakClicked"
+            />
         </StackLayout>
     </c:CirclePage.Content>
     <c:CirclePage.CircleSurfaceItems>

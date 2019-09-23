@@ -3,12 +3,15 @@ using System.Timers;
 using Xamarin.Forms;
 using TimeoutApp.Model;
 using TimeoutApp.Model.Event;
+using Tizen.System;
 
 [assembly: Dependency(typeof(ApplicationState))]
 namespace TimeoutApp.Model
 {
     public class ApplicationState
     {
+        public Feedback Feedback { get; set; }
+
         public event EventHandler WorkStartChanged;
 
         private DateTime _workStart;
@@ -46,10 +49,21 @@ namespace TimeoutApp.Model
 
         private TimeSpan _breakDuration;
 
+        public ApplicationState()
+        {
+            Feedback = new Feedback();
+        }
+
         public void StartBreak()
         {
             _breakStart = DateTime.Now;
             _breakDuration = GetBreakDuration();
+        }
+
+        public void EndBreak()
+        {
+            _breakStart = DateTime.MinValue;
+            _breakDuration = TimeSpan.FromSeconds(0);
         }
 
         public DateTime BreakStart
@@ -84,7 +98,7 @@ namespace TimeoutApp.Model
                 breakDuration = 15;
             }
             
-            return TimeSpan.FromSeconds(breakDuration * 10);
+            return TimeSpan.FromMinutes(breakDuration);
         }
     }
 }
