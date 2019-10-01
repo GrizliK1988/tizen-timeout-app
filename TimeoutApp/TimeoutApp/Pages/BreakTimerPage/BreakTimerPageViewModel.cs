@@ -58,7 +58,7 @@ namespace TimeoutApp.Pages.BreakTimerPage
 
         private void TimeElapsed()
         {
-            var secondsLeft = _applicationState.BreakDuration.Seconds - (DateTime.Now - _applicationState.BreakStart).Seconds;
+            var secondsLeft = _applicationState.BreakDuration.TotalSeconds - (DateTime.Now - _applicationState.BreakStart).TotalSeconds;
 
             _restOfBreak = _applicationState.BreakDuration - (DateTime.Now - _applicationState.BreakStart);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RestOfBreakFormatted"));
