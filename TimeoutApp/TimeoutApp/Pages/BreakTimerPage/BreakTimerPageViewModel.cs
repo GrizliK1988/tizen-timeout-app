@@ -64,7 +64,7 @@ namespace TimeoutApp.Pages.BreakTimerPage
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RestOfBreakFormatted"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RestOfBreakNormalized"));
 
-            if (secondsLeft == 0) {
+            if (secondsLeft <= 0) {
                 _applicationState.Feedback.Play(FeedbackType.Vibration, "Timer");
             }
         }

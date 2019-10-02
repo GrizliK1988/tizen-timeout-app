@@ -62,7 +62,7 @@ namespace TimeoutApp.Model
 
         public void EndBreak()
         {
-            _breakStart = DateTime.MinValue;
+            _breakStart = DateTime.MaxValue;
             _breakDuration = TimeSpan.FromSeconds(0);
         }
 

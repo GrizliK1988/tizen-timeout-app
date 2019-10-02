@@ -22,14 +22,14 @@ namespace TimeoutApp
 
         protected override void OnSleep()
         {
-            var appState = DependencyService.Get<ApplicationState>();
-            appState.Timer?.Stop();
+            // var appState = DependencyService.Get<ApplicationState>();
+            // appState.Timer?.Stop();
         }
 
         protected override void OnResume()
         {
-            var appState = DependencyService.Get<ApplicationState>();
-            appState.Timer?.Start();
+            // var appState = DependencyService.Get<ApplicationState>();
+            // appState.Timer?.Start();
         }
     }
 }
